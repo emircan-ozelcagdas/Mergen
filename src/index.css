@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 50% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 221 83% 94%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 18%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 91% 24%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 18%;
+    --input: 217 33% 18%;
+    --ring: 224 76% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .glass-morphism {
+    @apply bg-white/90 dark:bg-black/90 backdrop-blur-md border border-white/20 dark:border-black/20 shadow-lg;
+  }
+  
+  .glass-button {
+    @apply glass-morphism px-4 py-2 rounded-full transition-all duration-300 hover:bg-white/70 dark:hover:bg-black/70;
+  }
+  
+  .btn-primary {
+    @apply bg-mergen-600 text-white py-2 px-6 rounded-full font-medium transition-all duration-300 
+           hover:bg-mergen-700 hover:shadow-md active:scale-[0.97] disabled:opacity-70 
+           disabled:cursor-not-allowed disabled:hover:bg-mergen-600 disabled:active:scale-100;
+  }
+  
+  .input-field {
+    @apply px-4 py-3 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 w-full transition-all duration-300
+           focus:outline-none focus:ring-2 focus:ring-mergen-300 focus:border-transparent
+           placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:text-white;
+  }
+  
+  .selector {
+    @apply rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 px-4 py-3 text-base
+           focus:outline-none focus:ring-2 focus:ring-mergen-300 focus:border-transparent
+           cursor-pointer appearance-none dark:text-white;
+  }
+}
