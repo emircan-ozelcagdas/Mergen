@@ -4,6 +4,7 @@ import { MoonIcon, SunIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTheme } from 'next-themes';
 import mergenLogo from '../assets/mergen_logo.png';
+import { Link } from 'react-router-dom';
 
 const Chat = () => {
   const { theme, setTheme } = useTheme();
@@ -14,11 +15,13 @@ const Chat = () => {
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <img 
-                src={mergenLogo} 
-                alt="Mergen Logo" 
-                className="w-16 h-16 rounded-2xl object-cover shadow-lg hover:shadow-xl transition-all duration-300"
-              />
+              <Link to="/">
+                <img 
+                  src={mergenLogo} 
+                  alt="Mergen Logo" 
+                  className="w-16 h-16 rounded-2xl object-cover shadow-lg hover:shadow-xl transition-all duration-300"
+                />
+              </Link>
               <div>
                 <h1 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-mergen-800 to-mergen-600">
                   Mergen
@@ -52,4 +55,4 @@ const Chat = () => {
   );
 };
 
-export default Chat; 
+export default Chat;

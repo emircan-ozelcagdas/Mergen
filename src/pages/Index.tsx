@@ -4,22 +4,28 @@ import { Button } from '@/components/ui/button';
 import { MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import mergenLogo from '../assets/mergen_logo.png';
+import { Link } from 'react-router-dom';
+import EmojiAnimation from '../components/EmojiAnimation';
 
 const Index = () => {
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
+  const emojis = Array.from({ length: 20 }, () => ['📚', '📖', '📑'][Math.floor(Math.random() * 3)]);
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-background to-muted">
+      <EmojiAnimation emojis={emojis} />
       <header className="px-6 py-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <img 
-                src={mergenLogo} 
-                alt="Mergen Logo" 
-                className="w-16 h-16 rounded-2xl object-cover shadow-lg hover:shadow-xl transition-all duration-300"
-              />
+              <Link to="/">
+                <img
+                  src={mergenLogo}
+                  alt="Mergen Logo"
+                  className="w-16 h-16 rounded-2xl object-cover shadow-lg hover:shadow-xl transition-all duration-300"
+                />
+              </Link>
               <div>
                 <h1 className="text-3xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-mergen-800 to-mergen-600">
                   Mergen
@@ -41,7 +47,7 @@ const Index = () => {
           </div>
         </div>
       </header>
-      
+
       <main className="flex-1 container mx-auto p-4 md:p-6">
         <div className="max-w-5xl mx-auto space-y-8">
           <section className="text-center space-y-4 py-8">
@@ -52,8 +58,8 @@ const Index = () => {
               Mergen ile istediğiniz dersi, istediğiniz konuyu, kendi hızınızda öğrenin.
               Size özel bir öğretmen asistanı her zaman yanınızda.
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="mt-8"
               onClick={() => navigate('/chat')}
             >
@@ -62,12 +68,12 @@ const Index = () => {
           </section>
         </div>
       </main>
-      
+
       <footer className="py-6 border-t">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Mergen AI Tutor. Tüm hakları saklıdır.
+              © {new Date().getFullYear()} Mergen AI Tutor | Created by Emir
             </div>
             <div className="flex gap-4 text-sm text-muted-foreground">
               <a href="#" className="hover:text-primary transition-colors">Gizlilik Politikası</a>

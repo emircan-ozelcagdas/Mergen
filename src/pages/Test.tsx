@@ -45,10 +45,10 @@ const Test = () => {
     generateQuestions();
   }, [location.state, navigate]);
 
-  const handleAnswerSelect = (questionId: number, answerIndex: number) => {
+  const handleAnswerSelect = (questionIndex: number, answerIndex: number) => {
     setAnswers(prev => {
       const newAnswers = [...prev];
-      newAnswers[questionId - 1] = answerIndex;
+      newAnswers[questionIndex] = answerIndex;
       return newAnswers;
     });
   };
@@ -82,8 +82,8 @@ const Test = () => {
                 {index + 1}. {question.question}
               </h3>
               <RadioGroup
-                value={answers[question.id - 1].toString()}
-                onValueChange={(value) => handleAnswerSelect(question.id, parseInt(value))}
+                value={answers[index] !== -1 ? answers[index].toString() : ""}
+                onValueChange={(value) => handleAnswerSelect(index, parseInt(value))}
               >
                 {question.options.map((option, optionIndex) => (
                   <div key={optionIndex} className="flex items-center space-x-2">
@@ -125,4 +125,4 @@ const Test = () => {
   );
 };
 
-export default Test; 
+export default Test;

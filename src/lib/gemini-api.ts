@@ -205,12 +205,17 @@ export async function generateTest(params: GenerateTestParams): Promise<Generate
     Her soru için 5 şık olmalı. Yanıtı aşağıdaki JSON formatında ver:
     
     {
-      "question": "Soru metni",
-      "options": ["A şıkkı", "B şıkkı", "C şıkkı", "D şıkkı", "E şıkkı"],
-      "correctAnswer": 0
+      "questions": [
+        {
+          "question": "Soru metni",
+          "options": ["A şıkkı", "B şıkkı", "C şıkkı", "D şıkkı", "E şıkkı"],
+          "correctAnswer": 0
+        },
+        // Diğer sorular...
+      ]
     }
     
-    Her soruyu ayrı bir satırda ver.`;
+    Sadece JSON formatında yanıt ver, başka açıklama ekleme.`;
 
     // Chat Oturumu Başlat
     const chat = model.startChat({
@@ -233,23 +238,32 @@ export async function generateTest(params: GenerateTestParams): Promise<Generate
     }
 
     // API yanıtını işle ve soruları oluştur
-    const questions: Question[] = text
-      .split('\n')
-      .filter(line => line.trim())
-      .map((line, index) => {
-        try {
-          const parsed = JSON.parse(line);
-          return {
+    let questions: Question[] = [];
+    try {
+      // JSON yanıtını temizle ve parse et
+      const cleanedText = text.replace(/```json|```/g, '').trim();
+      const jsonMatch = cleanedText.match(/{[\s\S]*}/);
+      
+      if (jsonMatch) {
+        const parsedData = JSON.parse(jsonMatch[0]);
+        
+        if (Array.isArray(parsedData.questions)) {
+          questions = parsedData.questions.map((q, index) => ({
             id: index + 1,
-            question: parsed.question,
-            options: parsed.options,
-            correctAnswer: parsed.correctAnswer
-          };
-        } catch (error) {
-          console.error('Soru ayrıştırma hatası:', error);
-          throw new Error('Soru formatı geçersiz');
+            question: q.question,
+            options: q.options,
+            correctAnswer: q.correctAnswer
+          }));
+        } else {
+          throw new Error('Geçersiz soru formatı: questions dizisi bulunamadı');
         }
-      });
+      } else {
+        throw new Error('Geçersiz JSON yanıtı');
+      }
+    } catch (error) {
+      console.error('Soru ayrıştırma hatası:', error);
+      throw new Error('Soru formatı geçersiz');
+    }
 
     return {
       success: true,
