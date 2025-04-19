@@ -20,7 +20,7 @@
 
 ```bash
 git clone https://github.com/emircan-ozelcagdas/Mergen.git
-cd mergen
+cd Mergen
 npm install
 npm run dev
 ```
@@ -31,7 +31,7 @@ Temel düzeyde bir bilgisayar yeterlidir. Uygulama düşük kaynakla çalışabi
 ### Teknik Detaylar
 
 - **Platform**: Web (Node.js tabanlı)
-- **Backend**: OpenAI API & Gemini
+- **Backend**: Gemini API
 - **Durum**: Beta
 
 ### Hedef Kitle
@@ -43,6 +43,7 @@ Temel düzeyde bir bilgisayar yeterlidir. Uygulama düşük kaynakla çalışabi
 - Kişiselleştirilmiş içerik üretimi için yapay zeka eğitimi
 - Soru çözme özelliği
 - Yeni derslerin eklenmesi
+- OpenAI API entegrasyon
 
 ### Katkı Sağlayın
 
@@ -73,8 +74,8 @@ MIT Lisansı
 #### Installation
 
 ```bash
-git clone https://github.com/your-username/mergen.git
-cd mergen
+git clone https://github.com/emircan-ozelcagdas/Mergen.git
+cd Mergen
 npm install
 npm run dev
 ```
